@@ -1,21 +1,27 @@
 <div class="functionalities-wrapper">
-<button *ngIf="!showReminderOpt" class='reminder-button' (click)="toggleReminderOptions()">+ reminder</button>
-<div *ngIf='showReminderOpt' class="input-options">
-    <div class="title-input-container">
-        <p class="input-title">DAY</p>
-        <input type="number" placeholder="14" />
-    </div>
-    <div class="title-input-container">
-        <p class="input-title">CITY</p>
-        <input type="text" placeholder="Berlin"/>
-    </div>
-    <div class="title-input-container">
-        <p class="input-title">TIME</p>
-        <input class="last-input" type="time"/>
-    </div>
-    <div class="title-input-container">
-        <button class='reminder-button' [disabled]="true" (click)="toggleReminderOptions()">add reminder</button>
-        <button class='reminder-button right' (click)="toggleReminderOptions()">cancel</button>
-    </div>
-</div>
+    <button *ngIf="!showReminderOpt" class='reminder-button' (click)="toggleReminderOptions()">+ reminder</button>
+    <form [formGroup]="form" (submit)="onSubmit()">
+        <div *ngIf='showReminderOpt' class="input-options">
+            <div class="title-input-container">
+                <p class="input-title">DAY</p>
+                <input formControlName="day" type="number" placeholder="14" />
+            </div>
+            <div class="title-input-container">
+                <p class="input-title">CITY</p>
+                <input formControlName="city" type="text" placeholder="Berlin" />
+            </div>
+            <div class="title-input-container">
+                <p class="input-title">START TIME</p>
+                <input formControlName="startTime" class="last-input" type="time" />
+            </div>
+            <div class="title-input-container">
+                <p class="input-title">END TIME</p>
+                <input formControlName="endTime" class="last-input" type="time" />
+            </div>
+            <div class="title-input-container">
+                <button class='reminder-button' [disabled]="!form.valid" type="submit" (click)="onSubmit()">add reminder</button>
+                <button class='reminder-button right' (click)="toggleReminderOptions()">cancel</button>
+            </div>
+        </div>
+    </form>
 </div>

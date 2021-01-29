@@ -15,7 +15,13 @@ export class CalendarComponent implements OnInit {
     "Friday",
     "Saturday",
   ];
-  constructor() {}
+  public eventsBooleanArray: Array<boolean>;
+  public daysOfTheMonth: Array<number>;
+
+  constructor() {
+    this.daysOfTheMonth = Array(31).fill(1, 31);
+    console.log(this.daysOfTheMonth);
+  }
 
   ngOnInit(): void {}
 }

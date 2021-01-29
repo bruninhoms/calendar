@@ -47,3 +47,9 @@ input {
 .last-input {
   width: 103px;
 }
+
+@media (max-width: 768px) {
+  .functionalities-wrapper {
+    display: none;
+  }
+}
