@@ -9,9 +9,11 @@ import { MatInputModule } from "@angular/material/input";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
-import { CalendarComponent } from "./calendar/calendar.component";
-import { FunctionalitiesComponent } from "./functionalities/functionalities.component";
-import { EventComponent } from "./event/event.component";
+import { CalendarComponent } from "./components/calendar/calendar.component";
+import { FunctionalitiesComponent } from "./components/functionalities/functionalities.component";
+import { EventComponent } from "./components/event/event.component";
+
+import { DataService } from "./services/data.service";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { EventComponent } from "./event/event.component";
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

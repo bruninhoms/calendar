@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { DataService } from "src/app/services/data.service";
 
 @Component({
   selector: "functionalities",
@@ -16,7 +17,7 @@ export class FunctionalitiesComponent implements OnInit {
     endTime: new FormControl("", Validators.required),
   });
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {}
 
@@ -25,10 +26,20 @@ export class FunctionalitiesComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Dia ", this.form.value.day);
-    console.log("cidade ", this.form.value.city);
-    console.log("st ", this.form.value.startTime);
-    console.log("et ", this.form.value.endTime);
+    if (
+      !this.form.value.day ||
+      !this.form.value.city ||
+      !this.form.value.startTime ||
+      !this.form.value.endTime
+    )
+      return;
+
+    this.dataService.getDayOfTheReminder().next(this.form.value.day);
+    this.dataService.getCityOfTheReminder().next(this.form.value.city);
+    this.dataService.getEndTimeOfTheReminder().next(this.form.value.endTime);
+    this.dataService
+      .getStartTimeOfTheReminder()
+      .next(this.form.value.startTime);
 
     this.showReminderOpt = false;
   }

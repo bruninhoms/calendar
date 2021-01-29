@@ -2,30 +2,38 @@
       <ul class="weekdays">
         <li *ngFor='let day of daysOfTheWeek'>{{day | uppercase}}</li>
       </ul>
-  
-      <ul class="days">
-        <li class="day other-month"></li>
-        <li class="day other-month"></li>
-        <li class="day other-month"></li>
-        <li class="day other-month"></li>
-        <li class="day other-month"></li>
+
+              <!-- <div class="events">
+          <ng-container> 
+            <event *ngIf="eventsBooleanArray"></event>
+          </ng-container>
+      </div>	    					 -->
   
         <!-- Days in current month -->
+          <ul *ngFor='let in of counter(6)' class="days">
+            <li *ngFor='let in2 of counter(7)' class="day">
+              <div class="date">:)</div>	
+            </li>
+          </ul>
   
+      <!-- <ul class="days">
+        <li class="day other-month">
+        </li>
+        <li class="day other-month">
+        </li>
+        <li class="day other-month">
+        </li>
+        <li class="day other-month">
+        </li>
+        <li class="day other-month">
+        </li>
         <li class="day">
           <div class="date">1</div>	
-          <div class="events">
-              <!-- Should have an ngFor with how many events it has -->
-              <ng-container> 
-                <event *ngIf="eventsBooleanArray"></event>
-              </ng-container>
-          </div>	    					
         </li>
         <li class="day">
           <div class="date">2</div>
         </li>
       </ul>
-  
       <ul class="days">
         <li class="day">
           <div class="date">3</div>    					
@@ -132,6 +140,6 @@
         <li class="day other-month"></li>
         <li class="day other-month"></li>
         <li class="day other-month"></li>
-      </ul>
+      </ul> -->
   
     </div>
