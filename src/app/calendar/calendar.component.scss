@@ -1,0 +1,114 @@
+:host {
+  width: 100%;
+  border-radius: 4px;
+}
+
+a {
+  color: #3f3f44;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+li {
+  display: block;
+  float: left;
+  width: 14.342%;
+  padding: 5px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  margin-right: -1px;
+  margin-bottom: -1px;
+}
+
+ul.weekdays {
+  height: 40px;
+  background: #3f3f44;
+}
+
+ul.weekdays li {
+  text-align: center;
+  line-height: 20px;
+  border: none !important;
+  padding: 10px 6px;
+  color: #fff;
+  font-size: 13px;
+}
+
+.days li {
+  height: 180px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.day {
+  background-color: #fff;
+}
+
+.date {
+  border: 1px solid gray;
+  text-align: center;
+  margin-bottom: 5px;
+  padding: 4px;
+  background: #3f3f44;
+  color: #fff;
+  width: 20px;
+  border-radius: 50%;
+  float: left;
+}
+
+.event {
+  clear: both;
+  display: block;
+  font-size: 13px;
+  border-radius: 4px;
+  padding: 5px;
+  margin-top: 40px;
+  margin-bottom: 5px;
+  line-height: 14px;
+  background: #e4f2f2;
+  border: 1px solid #b5dbdc;
+  color: #009aaf;
+  text-decoration: none;
+}
+
+.event-desc {
+  color: #666;
+  margin: 3px 0 7px 0;
+  text-decoration: none;
+}
+
+.other-month {
+  background: #d4d4d4;
+  color: #666;
+
+  &:hover {
+    cursor: not-allowed;
+  }
+}
+
+@media (max-width: 768px) {
+  .weekdays,
+  .other-month {
+    display: none;
+  }
+
+  li {
+    height: auto !important;
+    border: 1px solid #ededed;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: -1px;
+  }
+
+  .date {
+    float: none;
+  }
+}
