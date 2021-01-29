@@ -29,5 +29,7 @@ export class FunctionalitiesComponent implements OnInit {
     console.log("cidade ", this.form.value.city);
     console.log("st ", this.form.value.startTime);
     console.log("et ", this.form.value.endTime);
+
+    this.showReminderOpt = false;
   }
 }
