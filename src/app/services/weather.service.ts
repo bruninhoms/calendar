@@ -27,12 +27,9 @@ export class WeatherService implements OnInit {
       },
     };
 
-    console.log(options);
-
     axios
       .request(options)
       .then((response) => {
-        console.log(response.data);
         this.getClima().next(response.data);
       })
       .catch((error) => {

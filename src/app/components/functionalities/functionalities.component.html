@@ -1,34 +1,34 @@
-<div class="functionalities-wrapper">
-    <button *ngIf="!showReminderOpt" class='reminder-button' (click)="toggleReminderOptions()">+ reminder</button>
+<div id="functionalitiesContainer" class="functionalities-wrapper">
+    <button id="buttonReminderOptions" *ngIf="!showReminderOpt" class='reminder-button' (click)="toggleReminderOptions()">+ reminder</button>
     <form [formGroup]="form" (submit)="onSubmit()">
         <div *ngIf='showReminderOpt' class="input-options">
             <div class="title-input-container">
                 <p class="input-title">DAY</p>
-                <input formControlName="day" type="number" placeholder="14" />
+                <input formControlName="day" type="number" placeholder="14" id="dayInput" />
             </div>
             <div class="title-input-container">
                 <p class="input-title">CITY</p>
-                <input formControlName="city" type="text" placeholder="New York" />
+                <input formControlName="city" type="text" placeholder="New York" id="cityInput" />
             </div>
             <div class="title-input-container">
                 <p class="input-title">START TIME</p>
-                <input formControlName="startTime" class="last-input" type="time" />
+                <input formControlName="startTime" class="last-input" type="time" id="startTimeInput" />
             </div>
             <div class="title-input-container">
                 <p class="input-title">END TIME</p>
-                <input formControlName="endTime" class="last-input" type="time" />
+                <input formControlName="endTime" class="last-input" type="time" id="endTimeInput" />
             </div>
             <div class="title-input-container">
                 <p class="input-title">COLOR</p>
-                <input maxlength="0" [(colorPicker)]="color" [style.background]="color"/>
+                <input maxlength="0" [(colorPicker)]="color" [style.background]="color" id="colorInput"/>
             </div>
             <div class="title-input-container description-container">
                 <p class="input-title">DESCRIPTION</p>
-                <textarea maxlength="30" formControlName="description" type="text" placeholder="Enter some text..."></textarea>
+                <textarea maxlength="30" formControlName="description" type="text" placeholder="Enter some text..." id="descriptionTextArea" ></textarea>
             </div>
             <div class="title-input-container">
-                <button class='reminder-button' [disabled]="!form.valid || !this.color" type="submit" (click)="onSubmit()">add reminder</button>
-                <button class='reminder-button right' (click)="toggleReminderOptions()">cancel</button>
+                <button id="buttonSubmit"  class='reminder-button' [disabled]="!form.valid || !this.color" type="submit" (click)="onSubmit()">add reminder</button>
+                <button id="buttonCancel"  class='reminder-button right' (click)="toggleReminderOptions()">cancel</button>
             </div>
         </div>
     </form>

@@ -39,7 +39,7 @@ export class FunctionalitiesComponent implements OnInit {
     this.showReminderOpt = !this.showReminderOpt;
   }
 
-  private createReminderObject(): Reminder {
+  public createReminderObject(): Reminder {
     return {
       _id: Math.floor(Math.random() * 100),
       day: this.form.value.day,
