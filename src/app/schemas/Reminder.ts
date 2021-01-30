@@ -1,4 +1,5 @@
 export interface Reminder {
+  _id: number;
   day: number;
   city: string;
   description: string;

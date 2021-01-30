@@ -1,30 +1,21 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
+import type { Reminder } from "../schemas/Reminder";
 
 @Injectable({
   providedIn: "root",
 })
 export class DataService {
-  public day$ = new Subject<number>();
-  public city$ = new Subject<string>();
-  public startTime$ = new Subject<string>();
-  public endTime$ = new Subject<string>();
+  public reminder$ = new Subject<Reminder>();
+  public reminderUpdate$ = new Subject<Reminder>();
 
   constructor() {}
 
-  public getDayOfTheReminder(): Subject<number> {
-    return this.day$;
+  public getReminder(): Subject<Reminder> {
+    return this.reminder$;
   }
 
-  public getCityOfTheReminder(): Subject<string> {
-    return this.city$;
-  }
-
-  public getStartTimeOfTheReminder(): Subject<string> {
-    return this.startTime$;
-  }
-
-  public getEndTimeOfTheReminder(): Subject<string> {
-    return this.endTime$;
+  public getReminderUpdate(): Subject<Reminder> {
+    return this.reminderUpdate$;
   }
 }

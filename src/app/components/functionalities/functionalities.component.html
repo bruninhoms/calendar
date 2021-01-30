@@ -8,7 +8,7 @@
             </div>
             <div class="title-input-container">
                 <p class="input-title">CITY</p>
-                <input formControlName="city" type="text" placeholder="Berlin" />
+                <input formControlName="city" type="text" placeholder="New York" />
             </div>
             <div class="title-input-container">
                 <p class="input-title">START TIME</p>
@@ -19,9 +19,26 @@
                 <input formControlName="endTime" class="last-input" type="time" />
             </div>
             <div class="title-input-container">
-                <button class='reminder-button' [disabled]="!form.valid" type="submit" (click)="onSubmit()">add reminder</button>
+                <p class="input-title">COLOR</p>
+                <input maxlength="0" [(colorPicker)]="color" [style.background]="color"/>
+            </div>
+            <div class="title-input-container description-container">
+                <p class="input-title">DESCRIPTION</p>
+                <textarea maxlength="30" formControlName="description" type="text" placeholder="Enter some text..."></textarea>
+            </div>
+            <div class="title-input-container">
+                <button class='reminder-button' [disabled]="!form.valid || !this.color" type="submit" (click)="onSubmit()">add reminder</button>
                 <button class='reminder-button right' (click)="toggleReminderOptions()">cancel</button>
             </div>
         </div>
     </form>
+    <div *ngIf='cities?.length > 0'class="clima-container">
+        <h3 class="clima-title">Climate:</h3>
+        <div class="clima-info">
+            <span *ngFor='let city of cities'>{{city}}</span>
+        </div>
+        <div class="clima-info">
+            <span *ngFor='let temp of mainTemps'>{{temp}} F</span>
+        </div>
+    </div>
 </div>

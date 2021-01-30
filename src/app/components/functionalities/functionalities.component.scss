@@ -1,9 +1,19 @@
 .functionalities-wrapper {
+  display: flex;
+  flex-direction: row;
   padding: 16px 0px;
-  width: 25%;
+  width: 100%;
 }
 
-.input-options {
+.clima-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+}
+
+.clima-title {
+  margin-right: 8px;
 }
 
 .reminder-button {
@@ -28,8 +38,19 @@
   align-items: center;
 }
 
+.description-container {
+  height: 48px;
+}
+
+.clima-info {
+  margin-right: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
 p {
   padding-left: 4px;
+  margin-right: 16px;
   font-size: medium;
 }
 
@@ -38,6 +59,16 @@ input {
   border: 1px solid transparent;
   width: 100px;
   margin-left: auto;
+}
+
+textarea {
+  border-radius: 4px;
+  border: 1px solid transparent;
+  width: 100px;
+  margin-left: auto;
+  resize: vertical;
+  min-height: 24px;
+  max-height: 48px;
 }
 
 .right {

@@ -18,3 +18,17 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 git stau
+
+## About the Jobsity project requirement
+
+BONUS -> ● Properly handle overflow when multiple reminders appear on the same date.
+
+● Ability to add a new "reminder" (max 30 chars) for a user entered day and time. Also,
+include a city.
+● Display reminders on the calendar view in the correct time order.
+● Allow the user to select color when creating a reminder and display it appropriately.
+● Ability to edit reminders – including changing text, city, day, time and color.
+● Add a weather service call from a free API such as Open Weather Map, and get the
+weather forecast (ex. Rain) for the date of the calendar reminder based on the city.
+● Unit test the functionality: Ability to add a new "reminder" (max 30 chars) for a user
+entered day and time. Also, include a city.

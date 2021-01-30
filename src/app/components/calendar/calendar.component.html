@@ -1,145 +1,22 @@
-    <div>
-      <ul class="weekdays">
-        <li *ngFor='let day of daysOfTheWeek'>{{day | uppercase}}</li>
-      </ul>
-
-              <!-- <div class="events">
-          <ng-container> 
-            <event *ngIf="eventsBooleanArray"></event>
-          </ng-container>
-      </div>	    					 -->
-  
-        <!-- Days in current month -->
-          <ul *ngFor='let in of counter(6)' class="days">
-            <li *ngFor='let in2 of counter(7)' class="day">
-              <div class="date">:)</div>	
-            </li>
-          </ul>
-  
-      <!-- <ul class="days">
-        <li class="day other-month">
-        </li>
-        <li class="day other-month">
-        </li>
-        <li class="day other-month">
-        </li>
-        <li class="day other-month">
-        </li>
-        <li class="day other-month">
-        </li>
-        <li class="day">
-          <div class="date">1</div>	
-        </li>
-        <li class="day">
-          <div class="date">2</div>
-        </li>
-      </ul>
-      <ul class="days">
-        <li class="day">
-          <div class="date">3</div>    					
-        </li>
-        <li class="day">
-          <div class="date">4</div>    					
-        </li>
-        <li class="day">
-          <div class="date">5</div>    					
-        </li>
-        <li class="day">
-          <div class="date">6</div>    					
-        </li>
-        <li class="day">
-          <div class="date">7</div>		
-        </li>
-        <li class="day">
-          <div class="date">8</div>    					
-        </li>
-        <li class="day">
-          <div class="date">9</div>    					
-        </li>
-      </ul>
-  
-      <ul class="days">
-        <li class="day">
-          <div class="date">10</div>    					
-        </li>
-        <li class="day">
-          <div class="date">11</div>    					
-        </li>
-        <li class="day">
-          <div class="date">12</div>    					
-        </li>
-        <li class="day">
-          <div class="date">13</div>    					
-        </li>
-        <li class="day">
-          <div class="date">14</div>
-        </li>
-        <li class="day">
-          <div class="date">15</div>    					
-        </li>
-        <li class="day">
-          <div class="date">16</div>    					
-        </li>
-      </ul>
-  
-      <ul class="days">
-        <li class="day">
-          <div class="date">17</div>    					
-        </li>
-        <li class="day">
-          <div class="date">18</div>    					
-        </li>
-        <li class="day">
-          <div class="date">19</div>    					
-        </li>
-        <li class="day">
-          <div class="date">20</div>    					
-        </li>
-        <li class="day">
-          <div class="date">21</div>    					
-        </li>
-        <li class="day">
-          <div class="date">22</div>
-        </li>
-        <li class="day">
-          <div class="date">23</div>    					
-        </li>
-      </ul>
-  
-      <ul class="days">
-        <li class="day">
-          <div class="date">24</div>    					
-        </li>
-        <li class="day">
-          <div class="date">25</div>		
-        </li>
-        <li class="day">
-          <div class="date">26</div>    					
-        </li>
-        <li class="day">
-          <div class="date">27</div>    					
-        </li>
-        <li class="day">
-          <div class="date">28</div>    					
-        </li>
-        <li class="day">
-          <div class="date">29</div>    					
-        </li>
-        <li class="day">
-          <div class="date">30</div>    					
-        </li>
-      </ul>
-  
-      <ul class="days">
-        <li class="day">
-          <div class="date">31</div>
-        </li>
-        <li class="day other-month"></li>
-        <li class="day other-month"></li>
-        <li class="day other-month"></li>
-        <li class="day other-month"></li>
-        <li class="day other-month"></li>
-        <li class="day other-month"></li>
-      </ul> -->
-  
-    </div>
+<div>
+  <ul class="weekdays">
+    <li *ngFor='let day of daysOfTheWeek'>{{day | uppercase}}</li>
+  </ul>
+  <li *ngFor='let in of counter(5)' class="day other-month"></li>
+  <li *ngFor='let in2 of counter(31); let i = index;' class="day">
+    <div class="date">{{i + 1}}</div>
+    <ng-container *ngFor="let reminder of remindersArray"> 
+      <event 
+        *ngIf='reminder.day == i + 1' 
+        [startTime]='reminder.startTime'
+        [endTime]='reminder.endTime'
+        [city]='reminder.city'
+        [description]='reminder.description'
+        [color]='reminder.color'
+        [day]='reminder.day'
+        [_id]='reminder._id'
+      ></event>	
+    </ng-container>
+  </li>
+  <li *ngFor='let in3 of counter(6)' class="day other-month"></li>
+</div>

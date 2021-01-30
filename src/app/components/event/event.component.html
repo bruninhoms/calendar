@@ -1,8 +1,54 @@
-<div class="event">
-    <div class="event-desc">
-      {{description}}
-    </div>
-    <div class="event-time">
-      {{startTime}} to {{endTime}}
-    </div>
+<div [style.background-color]="color" class="event" #eventDiv>
+  <div *ngIf='!editMode' class="event-desc" (click)="editMode = true">
+    {{description}}
   </div>
+  <input 
+    *ngIf='editMode'  
+    type="string" 
+    value="{{description}}" 
+    [(ngModel)]="description" 
+    [ngModelOptions]="{standalone: true}"
+    (keyup.enter)='concludeEdition()' 
+    maxlength="30"
+  />
+  <div *ngIf='!editMode' class="event-desc" (click)="editMode = true">
+    in {{city}}
+  </div>
+  <input 
+    *ngIf='editMode'  
+    type="string" 
+    value="{{city}}" 
+    [(ngModel)]="city" 
+    [ngModelOptions]="{standalone: true}"
+    (keyup.enter)='concludeEdition()' 
+    maxlength="15"
+  />
+  <div *ngIf='!editMode' class="event-time" (click)="editMode = true">
+    {{startTime}} to {{endTime}}
+  </div> 
+  <input 
+    *ngIf='editMode'  
+    type="string" 
+    value="{{newTime}}" 
+    [(ngModel)]="newTime" 
+    [ngModelOptions]="{standalone: true}"
+    (keyup.enter)='concludeEdition()' 
+    maxlength="30"
+  />
+  <input 
+    *ngIf='editMode'  
+    value="{{day}}" 
+    [(ngModel)]="day" 
+    [ngModelOptions]="{standalone: true}"
+    (keyup.enter)='concludeEdition()' 
+    maxlength="2"
+  />
+  <input 
+    *ngIf='editMode'  
+    placeholder="Color" 
+    [(colorPicker)]="color" 
+    [style.background]="color"
+    (keyup.enter)='concludeEdition()' 
+    maxlength="0"
+  />
+</div>

@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 import { DataService } from "src/app/services/data.service";
 import type { Reminder } from "../../schemas/Reminder";
-
 @Component({
   selector: "calendar",
   templateUrl: "./calendar.component.html",
@@ -19,72 +19,78 @@ export class CalendarComponent implements OnInit, OnDestroy {
     "Saturday",
   ];
   public eventsBooleanArray: Array<boolean>;
-  public daysOfTheMonth: Array<number>;
-  public remindersArray: Array<Reminder>;
-  public reminderNewDay: number;
-  public reminderNewCity: string;
-  public reminderNewStartTime: string;
-  public reminderNewEndTime: string;
-  public reminderNewDescription = "TESTE";
-  public reminderNewColor = "blue";
+  public remindersArray: Array<Reminder> = [];
+  public newReminder: Reminder;
 
   private componentDestroyed$: Subject<void> = new Subject<void>();
 
   constructor(private dataService: DataService) {
-    this.daysOfTheMonth = Array(31).fill(0);
+    this.eventsBooleanArray = Array(31).fill(false);
   }
 
   ngOnInit(): void {
-    this.dataService.getDayOfTheReminder().subscribe((_) => {
-      _ ? (this.reminderNewDay = _) : 0;
-    });
-    this.dataService.getCityOfTheReminder().subscribe((_) => {
-      _ ? (this.reminderNewCity = _) : 0;
-    });
-    this.dataService.getStartTimeOfTheReminder().subscribe((_) => {
-      _ ? (this.reminderNewStartTime = _) : 0;
-    });
-    this.dataService.getEndTimeOfTheReminder().subscribe((_) => {
-      _ ? (this.reminderNewEndTime = _) : 0;
-      setTimeout(() => this.createReminder(), 50);
-    });
+    this.dataService
+      .getReminder()
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe((_) => {
+        let newReminder: Reminder;
+        _
+          ? (newReminder = _)
+          : console.log("Error: Reminder object not found.");
+
+        this.createReminder(newReminder);
+      });
+
+    this.dataService
+      .getReminderUpdate()
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe((_) => {
+        let newEvent: Reminder;
+        _ ? (newEvent = _) : console.log("Error: Day not found.");
+
+        this.updateEvent(newEvent);
+      });
   }
 
-  private createReminder(): void {
-    let newReminder: Reminder;
-
-    newReminder = this.createEventObject();
-    this.returnVariablesToInitialState();
-    this.remindersArray.push(newReminder);
-    // Put that into the template
+  private createReminder(newReminder: Reminder): void {
+    this.remindersArray.push(this.createEventObject(newReminder));
+    this.remindersArray.sort(this.sortByStartTime);
   }
 
-  private createEventObject(): Reminder {
+  private updateEvent(newEvent: Reminder) {
+    this.remindersArray = this.remindersArray.map((_) => {
+      if (_._id === newEvent._id) {
+        _ = newEvent;
+        return _;
+      } else return _;
+    });
+    this.remindersArray.sort(this.sortByStartTime);
+  }
+
+  private createEventObject(newReminder: Reminder): Reminder {
     return {
-      day: this.reminderNewDay,
-      city: this.reminderNewCity,
-      startTime: this.reminderNewStartTime,
-      endTime: this.reminderNewEndTime,
-      color: this.reminderNewColor,
-      description: this.reminderNewDescription,
+      _id: newReminder._id,
+      day: newReminder.day,
+      city: newReminder.city,
+      startTime: newReminder.startTime,
+      endTime: newReminder.endTime,
+      color: newReminder.color,
+      description: newReminder.description,
     };
   }
 
-  private returnVariablesToInitialState(): void {
-    this.reminderNewDay = 0;
-    this.reminderNewCity = "";
-    this.reminderNewStartTime = "";
-    this.reminderNewEndTime = "";
-    this.reminderNewColor = "blue";
-    this.reminderNewColor = "TESTE";
+  private sortByStartTime(a: Reminder, b: Reminder) {
+    if (a.startTime < b.startTime) {
+      return -1;
+    }
+    if (a.startTime > b.startTime) {
+      return 1;
+    }
+    return 0;
   }
 
   public counter(i: number) {
     return new Array(i);
-  }
-
-  public createArrayCounterUp(i: number) {
-    return Array.from({ length: i }, (_, i) => i + 1);
   }
 
   ngOnDestroy(): void {
