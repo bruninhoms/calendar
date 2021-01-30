@@ -1,3 +1,7 @@
+# Instructions
+
+Clone the project and run `npm install` on root folder
+
 # CalendarJobsity
 
 This project is using [Angular CLI](https://github.com/angular/angular-cli) version 11.
